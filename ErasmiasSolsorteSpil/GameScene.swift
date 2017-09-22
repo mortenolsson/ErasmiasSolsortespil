@@ -22,23 +22,32 @@ class GameScene: SKScene {
 
   func spawnObstacle(timer: Timer) {
 
-    let spriteGenerator = GKShuffledDistribution(lowestValue: 1, highestValue: 2)
+    let rand = GKShuffledDistribution(lowestValue: 25, highestValue: Int(self.size.height - 25))
     let obstacle = SKSpriteNode(imageNamed: "cloud")
+//    obstacle.anchorPoint = CGPoint(x: 0, y: 0)
     obstacle.zPosition = player.zPosition - 1
+    print("obstacle z: \(obstacle.zPosition)")
     obstacle.xScale = 0.15
     obstacle.yScale = 0.15
-    obstacle.position = CGPoint(x: player.position.x + 600, y: player.position.y)
+//    obstacle.position = CGPoint(x: player.position.x + 600, y: player.position.y)
+    let y = CGFloat(rand.nextInt())
+//    print("y for obstacle: \(y)")
+    obstacle.position = CGPoint(x: player.position.x + 600, y: y)
     addChild(obstacle)
+
+    print("scene anchor x \(scene?.anchorPoint.x) y \(scene?.anchorPoint.y)")
+
   }
 
 
   override func update(_ currentTime: TimeInterval) {
     // Called before each frame is rendered
-    print("player y \(player.position.y)")
+//    print("camera y \(camera?.position.y)")
+//    print("scene width \(self.size.width)")
+//    print("scene height \(self.size.height)")
   }
 
   override func didSimulatePhysics() {
-    print("camera y \(camera?.position.y ?? 0)")
     camera?.position = CGPoint(x: player.position.x+180, y: camera?.position.y ?? 0)
   }
 
