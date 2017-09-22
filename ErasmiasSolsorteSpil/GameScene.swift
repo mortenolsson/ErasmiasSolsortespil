@@ -18,42 +18,41 @@ class GameScene: SKScene {
     let timer = Timer(timeInterval: 2.0, target: self, selector: #selector(spawnObstacle(timer:)), userInfo: nil, repeats: true)
     spawnObstacle(timer: timer)
     RunLoop.main.add(timer, forMode: RunLoopMode.commonModes)
+    let constraint = SKConstraint.positionY(SKRange(lowerLimit: 0))
+    player.constraints = [constraint]
   }
 
   func spawnObstacle(timer: Timer) {
-
     let rand = GKShuffledDistribution(lowestValue: 25, highestValue: Int(self.size.height - 25))
     let obstacle = SKSpriteNode(imageNamed: "cloud")
-//    obstacle.anchorPoint = CGPoint(x: 0, y: 0)
     obstacle.zPosition = player.zPosition - 1
-    print("obstacle z: \(obstacle.zPosition)")
     obstacle.xScale = 0.15
     obstacle.yScale = 0.15
-//    obstacle.position = CGPoint(x: player.position.x + 600, y: player.position.y)
     let y = CGFloat(rand.nextInt())
-//    print("y for obstacle: \(y)")
     obstacle.position = CGPoint(x: player.position.x + 600, y: y)
     addChild(obstacle)
-
-    print("scene anchor x \(scene?.anchorPoint.x) y \(scene?.anchorPoint.y)")
-
   }
 
 
   override func update(_ currentTime: TimeInterval) {
     // Called before each frame is rendered
-//    print("camera y \(camera?.position.y)")
-//    print("scene width \(self.size.width)")
-//    print("scene height \(self.size.height)")
   }
 
   override func didSimulatePhysics() {
     camera?.position = CGPoint(x: player.position.x+180, y: camera?.position.y ?? 0)
+//    player.position.y = max(20, player.position.y)
+//    if player.position.y < 0 {
+//      player.physicsBody!.applyImpulse(CGVector(dx: 0, dy: 20))
+//    }
   }
 
   override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
     player.physicsBody!.applyImpulse(CGVector(dx: 0, dy: 150))
   }
+
+
+  //    func touchDown(atPoint pos : CGPoint) {
+
 }
 
 
