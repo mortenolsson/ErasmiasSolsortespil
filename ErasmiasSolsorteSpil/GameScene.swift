@@ -18,8 +18,6 @@ class GameScene: SKScene {
     let timer = Timer(timeInterval: 2.0, target: self, selector: #selector(spawnObstacle(timer:)), userInfo: nil, repeats: true)
     spawnObstacle(timer: timer)
     RunLoop.main.add(timer, forMode: RunLoopMode.commonModes)
-    let constraint = SKConstraint.positionY(SKRange(lowerLimit: 0))
-    player.constraints = [constraint]
   }
 
   func spawnObstacle(timer: Timer) {
@@ -40,19 +38,19 @@ class GameScene: SKScene {
 
   override func didSimulatePhysics() {
     camera?.position = CGPoint(x: player.position.x+180, y: camera?.position.y ?? 0)
-//    player.position.y = max(20, player.position.y)
-//    if player.position.y < 0 {
-//      player.physicsBody!.applyImpulse(CGVector(dx: 0, dy: 20))
-//    }
+    if player.position.y < 1 {
+      player.position.y = 1
+      player.physicsBody?.velocity.dy = 0
+    }
+    if player.position.y > size.height {
+      player.position.y = size.height
+      player.physicsBody?.velocity.dy = 0
+    }
   }
 
   override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
     player.physicsBody!.applyImpulse(CGVector(dx: 0, dy: 150))
   }
-
-
-  //    func touchDown(atPoint pos : CGPoint) {
-
 }
 
 
