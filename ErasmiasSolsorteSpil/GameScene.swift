@@ -38,6 +38,7 @@ class GameScene: SKScene {
   }
 
   override func didSimulatePhysics() {
+    print("camera y \(camera?.position.y ?? 0)")
     camera?.position = CGPoint(x: player.position.x+180, y: camera?.position.y ?? 0)
   }
 
