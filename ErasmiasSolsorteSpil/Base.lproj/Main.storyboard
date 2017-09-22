@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="iSg-fV-QKN">
+    <device id="retina4_7" orientation="landscape">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="UQz-iu-kWt">
+            <objects>
+                <viewController id="iSg-fV-QKN" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="U6s-E6-Mjl"/>
+                        <viewControllerLayoutGuide type="bottom" id="ccS-m8-ps0"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="XHL-A4-gan">
+                        <rect key="frame" x="0.0" y="0.0" width="667" height="375"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SolsortMenuBaggrund" translatesAutoresizingMaskIntoConstraints="NO" id="E0H-q0-d8r">
+                                <rect key="frame" x="0.0" y="0.0" width="667" height="375"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E9t-hT-02U">
+                                <rect key="frame" x="216" y="133" width="234" height="108"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="80"/>
+                                <state key="normal" title="START">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="BV1-FR-VrT" kind="show" id="LjG-4b-3qX"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="E0H-q0-d8r" secondAttribute="trailing" id="0lc-oz-P4q"/>
+                            <constraint firstItem="ccS-m8-ps0" firstAttribute="top" secondItem="E0H-q0-d8r" secondAttribute="bottom" id="DYi-Wy-BP3"/>
+                            <constraint firstItem="E9t-hT-02U" firstAttribute="centerY" secondItem="XHL-A4-gan" secondAttribute="centerY" id="ebf-Hr-4tL"/>
+                            <constraint firstItem="E9t-hT-02U" firstAttribute="centerX" secondItem="XHL-A4-gan" secondAttribute="centerX" id="f2q-Hx-w9b"/>
+                            <constraint firstItem="E0H-q0-d8r" firstAttribute="leading" secondItem="XHL-A4-gan" secondAttribute="leading" id="geL-ER-uRP"/>
+                            <constraint firstItem="E0H-q0-d8r" firstAttribute="top" secondItem="XHL-A4-gan" secondAttribute="top" id="qZD-cD-GiZ"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xkI-Sj-ZMJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-650" y="20"/>
+        </scene>
+        <!--Game View Controller-->
+        <scene sceneID="tXr-a1-R10">
+            <objects>
+                <viewController id="BV1-FR-VrT" customClass="GameViewController" customModule="ErasmiasSolsorteSpil" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="8aa-yV-Osq"/>
+                        <viewControllerLayoutGuide type="bottom" id="qHh-Mt-9TT"/>
+                    </layoutGuides>
+                    <view key="view" multipleTouchEnabled="YES" contentMode="scaleToFill" id="3se-qz-xqx" customClass="SKView">
+                        <rect key="frame" x="0.0" y="0.0" width="667" height="375"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" name="controlDarkShadowColor" catalog="System" colorSpace="catalog"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="SZV-WD-TEh" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="107" y="20"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="SolsortMenuBaggrund" width="4032" height="3024"/>
+    </resources>
+</document>
