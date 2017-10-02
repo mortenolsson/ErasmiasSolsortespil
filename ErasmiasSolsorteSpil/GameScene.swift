@@ -17,8 +17,10 @@ class GameScene: SKScene {
   override func didMove(to view: SKView) {
     player = childNode(withName: "player")
     let timer = Timer(timeInterval: 2.0, target: self, selector: #selector(spawnObstacle(timer:)), userInfo: nil, repeats: true)
+    let enemyTimer = Timer(timeInterval: 2.5, target: self, selector: #selector(spawnEnemy), userInfo: nil, repeats: true)
     spawnObstacle(timer: timer)
     RunLoop.main.add(timer, forMode: RunLoopMode.commonModes)
+    RunLoop.main.add(enemyTimer, forMode: RunLoopMode.commonModes)
   }
 
   func spawnObstacle(timer: Timer) {
@@ -30,6 +32,25 @@ class GameScene: SKScene {
     let y = CGFloat(rand.nextInt())
     obstacle.position = CGPoint(x: player.position.x + 600, y: y)
     addChild(obstacle)
+  }
+
+  func spawnEnemy() {
+    print("enemy spawn...")
+    let rand = GKShuffledDistribution(lowestValue: 25, highestValue: Int(self.size.height - 25))
+    let enemy = SKSpriteNode(imageNamed: "pig")
+    enemy.zPosition = player.zPosition
+    enemy.xScale = 0.25 // TODO: these should be absolutes based on screen size - or just absolutes
+    enemy.yScale = 0.25
+
+    let physicsBody = SKPhysicsBody(texture: enemy.texture!, size: enemy.size)
+    physicsBody.friction = 0
+    enemy.physicsBody = physicsBody
+    enemy.physicsBody?.velocity = CGVector(dx: -20, dy: 0)
+    enemy.physicsBody?.affectedByGravity = false
+
+    let y = CGFloat(rand.nextInt())
+    enemy.position = CGPoint(x: player.position.x + 600, y: y)
+    addChild(enemy)
   }
 
 
