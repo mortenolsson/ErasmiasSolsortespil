@@ -7,15 +7,23 @@
 //
 
 import UIKit
+import AVKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
   var window: UIWindow?
-
+  private var player: AVAudioPlayer?
 
   func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
     // Override point for customization after application launch.
+    if let url = Bundle.main.url(forResource: "Solsortespil_Velkommen", withExtension: "m4a") {
+      try? AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
+      try? AVAudioSession.sharedInstance().setActive(true)
+      player = try? AVAudioPlayer(contentsOf: url)
+      print("player: \(player!)")
+      player?.play()
+    }
     return true
   }
 

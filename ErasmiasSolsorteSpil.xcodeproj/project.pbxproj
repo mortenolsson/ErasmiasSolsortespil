@@ -30,6 +30,7 @@
 		6F6474201F66C3E60083FD72 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		6F6474221F66C3E60083FD72 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6F6474281F66C5F40083FD72 /* Solsortespil_Velkommen.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = Solsortespil_Velkommen.m4a; sourceTree = "<group>"; };
+		6F81ED011F82E07C006AD319 /* englegris.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = englegris.m4a; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,6 +66,7 @@
 				6F6474121F66C3E60083FD72 /* GameScene.sks */,
 				6F6474161F66C3E60083FD72 /* GameScene.swift */,
 				6F6474101F66C3E60083FD72 /* AppDelegate.swift */,
+				6F81ED011F82E07C006AD319 /* englegris.m4a */,
 				6F6474141F66C3E60083FD72 /* Actions.sks */,
 				6F6474281F66C5F40083FD72 /* Solsortespil_Velkommen.m4a */,
 				6F6474181F66C3E60083FD72 /* GameViewController.swift */,
