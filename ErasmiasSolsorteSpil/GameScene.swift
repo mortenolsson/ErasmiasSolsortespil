@@ -42,7 +42,7 @@ class GameScene: SKScene {
     enemy.xScale = 0.25 // TODO: these should be absolutes based on screen size - or just absolutes
     enemy.yScale = 0.25
 
-    let physicsBody = SKPhysicsBody(texture: enemy.texture!, size: enemy.size)
+    let physicsBody = SKPhysicsBody(rectangleOf: enemy.size)
     physicsBody.friction = 0
     enemy.physicsBody = physicsBody
     enemy.physicsBody?.velocity = CGVector(dx: -20, dy: 0)
