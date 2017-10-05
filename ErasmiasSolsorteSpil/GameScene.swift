@@ -21,9 +21,18 @@ class GameScene: SKScene {
     spawnObstacle(timer: timer)
     RunLoop.main.add(timer, forMode: RunLoopMode.commonModes)
     RunLoop.main.add(enemyTimer, forMode: RunLoopMode.commonModes)
+
+//    camera?.physicsBody = SKPhysicsBody()
+//    camera?.physicsBody?.affectedByGravity = false
+//    camera?.physicsBody?.friction = 0
+//    camera?.physicsBody?.restitution = 1
+//    camera?.physicsBody?.angularDamping = 0
+//    camera?.physicsBody?.linearDamping = 0
+//    camera?.physicsBody?.velocity.dx = 120
+
   }
 
-  func spawnObstacle(timer: Timer) {
+  @objc func spawnObstacle(timer: Timer) {
     let rand = GKShuffledDistribution(lowestValue: 25, highestValue: Int(self.size.height - 25))
     let obstacle = SKSpriteNode(imageNamed: "cloud")
     obstacle.zPosition = player.zPosition - 1
@@ -34,7 +43,7 @@ class GameScene: SKScene {
     addChild(obstacle)
   }
 
-  func spawnEnemy() {
+  @objc func spawnEnemy() {
     print("enemy spawn...")
     let rand = GKShuffledDistribution(lowestValue: 25, highestValue: Int(self.size.height - 25))
     let enemy = SKSpriteNode(imageNamed: "pig")
