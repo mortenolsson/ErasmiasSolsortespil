@@ -22,11 +22,19 @@ class GameScene: SKScene {
     RunLoop.main.add(timer, forMode: RunLoopMode.commonModes)
     RunLoop.main.add(enemyTimer, forMode: RunLoopMode.commonModes)
 
+
+    if
+      let particlePath = Bundle.main.path(forResource: "MyParticle", ofType: "sks"),
+      let particle = NSKeyedUnarchiver.unarchiveObject(withFile: particlePath) as? SKEmitterNode {
+      particle.targetNode = self
+      player.addChild(particle)
+    }
+
     for i in 0...2 {
       let heart = SKSpriteNode(imageNamed: "heart")
       heart.zPosition = 10
-      heart.size.width = 25
-      heart.size.height = 25
+      heart.size.width = 25  // TODO: base on screen width
+      heart.size.height = 25 // TODO: base on screen width
       camera?.addChild(heart)
       let cameraRightX = size.width / 2
       let cameraTopY = (size.height / 2)
@@ -99,28 +107,7 @@ class GameScene: SKScene {
 
     guard let tap = touches.first else { return }
     let vector = CGVector(dx: tap.location(in: self).x - player.position.x, dy: tap.location(in: self).y - player.position.y)
-    print("vector: \(vector.debugDescription)")
-//    self.bullet.physicsBody?.applyImpulse(vector)
-
-    // eller måske sådan noget her:
-    // SKAction *run = [SKAction moveTo:touchLocation duration:.01 * distance];
-
-    // ah men - vi kunne også gøre noget meget mere enkelt
-    // når der røres så justerer vi velocity
-    // - hvis det er til højre sætter vi farten op (med max-loft)
-    // - hvis det er til venstre sætter vi farten ned (med min-loft)
-    // - hvis det er over sætte vi y fart ned (med loft)
-    // - hvis det er under sætter vi y fart op (med loft)
-
-    // så mangler vi i virkeligheden kun at få kamera til at have lidt bounce og forstå,
-    // at det skal lade fuglen komme lidt foran når den flyver hurtigere end base speed
-    // eller helt droppe base speed og lave navigation helt fri
-
-    // OG så er det måske lettere at gøre med impulse og vectors ?
-
-    // umiddelbart noget smartest med impulse - bare med en fail-safe der begrænser
-    // velocity
-
+    print("vector touched: \(vector)")
   }
 
   override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
