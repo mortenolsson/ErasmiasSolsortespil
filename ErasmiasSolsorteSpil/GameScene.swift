@@ -24,6 +24,7 @@ class GameScene: SKScene {
 
     for i in 0...2 {
       let heart = SKSpriteNode(imageNamed: "heart")
+      heart.zPosition = 10
       heart.size.width = 25
       heart.size.height = 25
       camera?.addChild(heart)
