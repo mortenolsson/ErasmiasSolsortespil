@@ -22,14 +22,16 @@ class GameScene: SKScene {
     RunLoop.main.add(timer, forMode: RunLoopMode.commonModes)
     RunLoop.main.add(enemyTimer, forMode: RunLoopMode.commonModes)
 
-//    camera?.physicsBody = SKPhysicsBody()
-//    camera?.physicsBody?.affectedByGravity = false
-//    camera?.physicsBody?.friction = 0
-//    camera?.physicsBody?.restitution = 1
-//    camera?.physicsBody?.angularDamping = 0
-//    camera?.physicsBody?.linearDamping = 0
-//    camera?.physicsBody?.velocity.dx = 120
-
+    for i in 0...2 {
+      let heart = SKSpriteNode(imageNamed: "heart")
+      heart.size.width = 25
+      heart.size.height = 25
+      camera?.addChild(heart)
+      let cameraRightX = size.width / 2
+      let cameraTopY = (size.height / 2)
+      heart.position.x = cameraRightX - CGFloat(i * 40 + 25)
+      heart.position.y = cameraTopY - 25
+    }
   }
 
   @objc func spawnObstacle(timer: Timer) {
