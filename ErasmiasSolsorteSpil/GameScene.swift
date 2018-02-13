@@ -20,7 +20,7 @@ class GameScene: SKScene {
 
   let playerCategory: UInt32 = 1
   let enemyCategory: UInt32 = 2
-
+  let otherCategory: UInt32 = 4 // is this right ?
 
   var player: SKSpriteNode!
   var currentHealth = 5
@@ -28,9 +28,15 @@ class GameScene: SKScene {
   private var touchDown = false
 
   override func didMove(to view: SKView) {
+
+    physicsWorld.contactDelegate = self
+
     player = childNode(withName: "player") as! SKSpriteNode
     player.sizeTo(percent: 20, of: frame)
+
     player.physicsBody?.categoryBitMask = playerCategory
+    player.physicsBody?.collisionBitMask = otherCategory
+    player.physicsBody?.contactTestBitMask = otherCategory
 
     let timer = Timer(timeInterval: 2.0, target: self, selector: #selector(spawnObstacle(timer:)), userInfo: nil, repeats: true)
     let enemyTimer = Timer(timeInterval: 2.5, target: self, selector: #selector(spawnEnemy), userInfo: nil, repeats: true)
@@ -60,6 +66,11 @@ class GameScene: SKScene {
     }
   }
 
+//  mySprite.setScale(0)
+//  let popAction = SKAction.scaleTo(1, duration: 1, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0)
+//  mySprite.runAction(popAction)
+
+
   @objc func spawnObstacle(timer: Timer) {
     let rand = GKShuffledDistribution(lowestValue: 25, highestValue: Int(self.size.height - 25))
     let obstacle = SKSpriteNode(imageNamed: "cloud")
@@ -85,7 +96,10 @@ class GameScene: SKScene {
     enemy.physicsBody = physicsBody
     enemy.physicsBody?.velocity = CGVector(dx: -20, dy: 0)
     enemy.physicsBody?.affectedByGravity = false
+
     enemy.physicsBody?.categoryBitMask = enemyCategory
+    enemy.physicsBody?.collisionBitMask = otherCategory
+    enemy.physicsBody?.contactTestBitMask = playerCategory
 
     let y = CGFloat(rand.nextInt())
     enemy.position = CGPoint(x: player.position.x + 600, y: y)
@@ -137,7 +151,7 @@ class GameScene: SKScene {
 
 extension GameScene: SKPhysicsContactDelegate {
   func didBegin(_ contact: SKPhysicsContact) {
-    print("did beging contact")
+    print("did begin contact")
   }
 }
 
